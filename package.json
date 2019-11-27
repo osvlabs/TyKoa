@@ -1,0 +1,22 @@
+{
+  "name": "ts-koa-back",
+  "version": "0.0.1",
+  "description": "ts-koa-backend-demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/koa": "^2.11.0",
+    "@types/node": "^12.12.14",
+    "@typescript-eslint/eslint-plugin": "^2.9.0",
+    "@typescript-eslint/parser": "^2.9.0",
+    "eslint": "^6.7.1",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "koa": "^2.11.0"
+  }
+}
