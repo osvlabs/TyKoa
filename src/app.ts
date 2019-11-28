@@ -26,13 +26,18 @@ app.use(async (ctx, next) => {
 // app.use(async ctx => {
 //   ctx.body = 'Hello World';
 // });
-const api: {
-  [key: string]: {
-    router: Router<any, {}>
-  }
-} = routes
+// const api: {
+//   [key: string]: {
+//     router: Router<any, {}>
+//   }
+// } = routes
+const api: any = routes
 Object.keys(api).forEach(v => {
-  app.use(api[v].router.routes())
+  if (api[v] && api[v].router) { // api[v] is a module alias
+    app.use(api[v].router.routes())
+  }else if (api[v] && api[v].routes && api[v].get) { // api[v] is a router / Router instance
+    app.use(api[v].routes())
+  }
 })
 
 app.listen(3000);

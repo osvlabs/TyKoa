@@ -1,4 +1,5 @@
-import * as test from './test'
-import * as test2 from './test2'
+import * as r1 from './test'
+import * as r2 from './test2'
+export * from './childroutes/index'
 
-export { test, test2 }
+export { r1, r2 }
