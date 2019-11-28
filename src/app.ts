@@ -1,6 +1,7 @@
 import 'reflect-metadata'
 import Koa from 'koa'
 import * as routes from './routes/index'
+import Router from '@koa/router';
 const app = new Koa();
 
 // logger
@@ -25,7 +26,11 @@ app.use(async (ctx, next) => {
 // app.use(async ctx => {
 //   ctx.body = 'Hello World';
 // });
-const api: any = routes
+const api: {
+  [key: string]: {
+    router: Router<any, {}>
+  }
+} = routes
 Object.keys(api).forEach(v => {
   app.use(api[v].router.routes())
 })
