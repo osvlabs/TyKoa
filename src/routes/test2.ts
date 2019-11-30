@@ -1,5 +1,5 @@
 import { router } from './router'
-import { pg } from '../db/dbInit'
+import { pg } from '../db/pg'
 
 
 router.get('/test/3', async (ctx, next) => {

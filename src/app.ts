@@ -3,7 +3,7 @@ import Koa from 'koa'
 import * as routes from './routes/index'
 // import Router from '@koa/router';
 import bodyParser from 'koa-bodyparser';
-import { pg } from './db/dbInit'
+import { pg } from './db/pg'
 
 const app = new Koa();
 
