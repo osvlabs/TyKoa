@@ -3,6 +3,7 @@ import Koa from 'koa'
 import * as routes from './routes/index'
 // import Router from '@koa/router';
 import bodyParser from 'koa-bodyparser';
+import { pg } from './db/dbInit'
 
 const app = new Koa();
 
@@ -10,8 +11,8 @@ const app = new Koa();
 app.use(bodyParser())
 
 // logger
-
 app.use(async (ctx, next) => {
+  ctx.pg = pg
   await next();
   const rt = ctx.response.get('X-Response-Time');
   console.log(`${ctx.method} ${ctx.url} - ${rt}`);
@@ -45,4 +46,10 @@ Object.keys(api).forEach(v => {
   }
 })
 
-app.listen(3000);
+async function init(): Promise<void> {
+  await pg.select(pg.raw("1"))
+  console.log('data base connected')
+  app.listen(3000);
+}
+
+init()
