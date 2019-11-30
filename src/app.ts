@@ -1,12 +1,17 @@
 import 'reflect-metadata'
 import Koa from 'koa'
 import * as routes from './routes/index'
-import Router from '@koa/router';
+// import Router from '@koa/router';
+import bodyParser from 'koa-bodyparser';
+
 const app = new Koa();
+
+// body parser
+app.use(bodyParser())
 
 // logger
 
-app.use(async (ctx, next) => {       
+app.use(async (ctx, next) => {
   await next();
   const rt = ctx.response.get('X-Response-Time');
   console.log(`${ctx.method} ${ctx.url} - ${rt}`);
