@@ -4,7 +4,9 @@ import Koa from 'koa'
 import * as routes from './routes/index'
 // import Router from '@koa/router';
 import bodyParser from 'koa-bodyparser';
-import { pg } from './db/pg'
+import { dbConnection, pg, postgraphileOptions } from './db/'
+import postgraphile from 'postgraphile';
+
 
 const app = new Koa();
 
@@ -27,6 +29,12 @@ app.use(async (ctx, next) => {
   const ms = Date.now() - start;
   ctx.set('X-Response-Time', `${ms}ms`);
 });
+
+app.use(postgraphile(
+  dbConnection,
+  'public',
+  postgraphileOptions
+))
 
 // response
 
