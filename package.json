@@ -4,6 +4,7 @@
   "description": "ts-koa-backend-demo",
   "main": "index.js",
   "scripts": {
+    "n": "nodemon",
     "dev": "concurrently nodemon \"open-cli http://localhost:3000/child/test/2\" ",
     "build": "npx tsc",
     "start": "node ./build/app.js",
@@ -29,6 +30,7 @@
   },
   "dependencies": {
     "@koa/router": "^8.0.2",
+    "dotenv": "^8.2.0",
     "knex": "^0.20.3",
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
