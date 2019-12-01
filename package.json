@@ -6,9 +6,10 @@
   "scripts": {
     "n": "nodemon",
     "dev": "concurrently nodemon \"open-cli http://localhost:3000/child/test/2\" ",
-    "build": "npx tsc",
+    "build": "tsc",
     "start": "node ./build/app.js",
     "postinstall": "( git init || true) && git update-index --skip-worktree \"./conf/local\"",
+    "lint": "eslint ./src/**/*.{ts,tsx}",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
