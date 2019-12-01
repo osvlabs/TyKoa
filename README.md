@@ -15,6 +15,7 @@ https://github.com/midwayjs/midway/
 > 1. Koa 2
 > 1. Knex.js , a SQL query builder
 > 1. pg , Postgresql Nodejs driver
+> 1. PostGraphile , make GraphQL and Postgres things easy
 > 1. dotenv , configurations in .env files
 
 
