@@ -33,7 +33,7 @@ function initEnv(): void{
     // if overrideMode is on, ignore and override existing process.env values
     if (result && result.parsed && !result.error && overrideMode) {
       Object.keys(result.parsed).forEach((k) => {
-        process.env[k] = result.parsed[k]
+        process.env[k] = (result.parsed as object)[k]
       })
     }
   }
