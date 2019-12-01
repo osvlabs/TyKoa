@@ -1,1 +1,8 @@
 NAME=localliu
+# database area
+DB_CLIENT=pg
+DB_PG_USER=postgres
+DB_PG_HOST=localhost
+DB_PG_DATABASE=
+DB_PG_PASSWORD=
+DB_PG_PORT=5432

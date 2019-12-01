@@ -1,11 +1,14 @@
 import knex from 'knex'
+import { getConfig } from '../util/'
+
+const pgPrefix = 'DB_PG_'
 
 const dbConnection: knex.PgConnectionConfig = {
-  user: 'postgres',
-  host: 'localhost',
-  database: '',
-  password: '',
-  port: 5432,
+  user: getConfig(`${pgPrefix}user`),
+  host: getConfig(`${pgPrefix}host`),
+  database: getConfig(`${pgPrefix}database`),
+  password: getConfig(`${pgPrefix}password`),
+  port: Number(getConfig(`${pgPrefix}port`)),
 }
 
 export { dbConnection }

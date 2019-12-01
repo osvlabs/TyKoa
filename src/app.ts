@@ -1,7 +1,7 @@
 import 'reflect-metadata'
+import './init'
 import Koa from 'koa'
 import * as routes from './routes/index'
-import './init'
 // import Router from '@koa/router';
 import bodyParser from 'koa-bodyparser';
 import { pg } from './db/pg'
@@ -47,7 +47,7 @@ Object.keys(api).forEach(v => {
   }
 })
 
-async function init(): Promise<void> {
+const init = async (): Promise<void> => {
   await pg.select(pg.raw("1"))
   console.log('data base connected')
   app.listen(3000);
@@ -55,4 +55,4 @@ async function init(): Promise<void> {
 
 init()
 
-console.log(process.env.NAME)
+console.log(process.env.DB_PG_PORT)

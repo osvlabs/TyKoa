@@ -8,7 +8,7 @@
     "dev": "concurrently nodemon \"open-cli http://localhost:3000/child/test/2\" ",
     "build": "npx tsc",
     "start": "node ./build/app.js",
-    "postinstall": "( git init || true) && git update-index --assume-unchanged \"./src/db/dbConnection.ts\"",
+    "postinstall": "( git init || true) && git update-index --assume-unchanged \"./src/conf/\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
