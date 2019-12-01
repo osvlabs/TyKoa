@@ -1,5 +1,5 @@
 import knex from 'knex'
-import { getConfig } from '../util/'
+import { getConfig } from '../util'
 
 const pgPrefix = 'DB_PG_'
 
@@ -11,4 +11,4 @@ const dbConnection: knex.PgConnectionConfig = {
   port: Number(getConfig(`${pgPrefix}port`)),
 }
 
-export { dbConnection }
+export { dbConnection, dbConnection as default }
