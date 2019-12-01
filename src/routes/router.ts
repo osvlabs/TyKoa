@@ -1,3 +1,4 @@
-import Router from '@koa/router';
+import Router from '@koa/router'
+
 const router = new Router()
-export { router, router as default}
+export { router, router as default }
