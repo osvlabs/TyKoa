@@ -5,6 +5,9 @@ import * as routes from './routes/index'
 // import Router from '@koa/router';
 import { pg } from './db/index'
 
+
+import './decorators/index'
+
 const app = initKoa()
 initPostgraphile(app)
 
