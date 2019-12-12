@@ -1,12 +1,13 @@
 #  APIQuick  
 A quickstart template for Node + TypeScript + Koa 2  
-> inspired by:  
-https://github.com/midwayjs/midway/  
 
 # TODO  
 > 1. IoC, using [injection](injection) or [tsyringe](https://github.com/microsoft/tsyringe) or [Inversify](https://github.com/inversify/InversifyJS)
-> 1. Better routes, like auto scanning directories using require-directory
+> 1. Better routes, like scanning directories then require, using globby  
+> 1. add service directory
 > 1. Better README
+> 1. Plugins support (like eggjs?..)
+> 1. CLI support to quickly generate structure
 > 1. RPC
 
 
@@ -24,4 +25,11 @@ https://github.com/midwayjs/midway/
 > 1. ts-node , execute .ts files without building to .js
 > 1. eslint , typescript-eslint ( TSLint is deprecated )
 > 1. concurrently , run multiple commands at one time
-> 1. open-cli , open URL in browser, through terminal.
+> 1. open-cli , open URL in browser, through terminal.  
+
+## Other
+> inspired by:  
+https://github.com/midwayjs/midway/  
+
+> Other similar projects:  
+https://github.com/thinkkoa/koatty
