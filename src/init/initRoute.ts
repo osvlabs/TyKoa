@@ -1,15 +1,23 @@
 import Koa from 'koa'
-import * as routes from '../routes/index'
+import Router from '@koa/router'
+import {
+  mapRoute, PATH_METADATA,
+} from '../decorators'
+import TestController from '../routes/test'
 
 function initRoute(app: Koa): void {
-  const api: any = routes
-  Object.keys(api).forEach((v) => {
-    if (api[v] && api[v].router) { // api[v] is a module alias
-      app.use(api[v].router.routes())
-    } else if (api[v] && api[v].routes && api[v].get) { // api[v] is a router / Router instance
-      app.use(api[v].routes())
-    }
+  const routerOption = {
+    // TODO prefix /xxx check
+    prefix: Reflect.getMetadata(PATH_METADATA, TestController) || '',
+  }
+  const router = new Router(routerOption)
+
+  const infoArr = mapRoute(new TestController())
+  // TODO globby folder scan
+  infoArr.forEach((routeClass: any) => {
+    router[String(routeClass.method).toLowerCase()](routeClass.route, routeClass.fn)
   })
+  app.use(router.routes())
 }
 
 export { initRoute, initRoute as default }

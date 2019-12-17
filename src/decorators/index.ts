@@ -18,7 +18,7 @@ function isConstructor(f) {
 const METHOD_METADATA = 'method'
 const PATH_METADATA = 'path'
 
-const Controller = (path: string): ClassDecorator => (target): void => {
+const Controller = (path = ''): ClassDecorator => (target): void => {
   Reflect.defineMetadata(PATH_METADATA, path, target)
 }
 
@@ -31,12 +31,12 @@ const createMappingDecorator = (method: string) => (path: string): MethodDecorat
 const Get = createMappingDecorator('GET')
 const Post = createMappingDecorator('POST')
 
-function mapRoute(instance: Record<string, any>): object {
+function mapRoute(instance: Record<string, any>): Array<object> {
   const prototype = Object.getPrototypeOf(instance)
 
   // 筛选出类的 methodName
   const methodsNames = Object.getOwnPropertyNames(prototype)
-    .filter((item) => !isConstructor(item) && isFunction(prototype[item]))
+    .filter((item) => !isConstructor(prototype[item]) && isFunction(prototype[item]))
   return methodsNames.map((methodName) => {
     const fn = prototype[methodName]
 
@@ -52,18 +52,6 @@ function mapRoute(instance: Record<string, any>): object {
   })
 }
 
-@Controller('/testController')
-class SomeClass {
-  @Get('/aa')
-  someGetMethod() {
-    return 'hello world'
-  }
-
-  @Post('/bb')
-  somePostMethod() {}
+export {
+  Controller, Get, Post, mapRoute, PATH_METADATA, METHOD_METADATA,
 }
-
-
-console.log(Reflect.getMetadata(PATH_METADATA, SomeClass))
-
-console.log(mapRoute(new SomeClass()))
