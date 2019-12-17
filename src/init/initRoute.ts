@@ -14,7 +14,7 @@ function initRoute(app: Koa): void {
 
   const infoArr = mapRoute(new TestController())
   // TODO globby folder scan
-  infoArr.forEach((routeClass: any) => {
+  infoArr.forEach((routeClass) => {
     router[String(routeClass.method).toLowerCase()](routeClass.route, routeClass.fn)
   })
   app.use(router.routes())

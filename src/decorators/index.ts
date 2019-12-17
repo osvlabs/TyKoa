@@ -31,7 +31,12 @@ const createMappingDecorator = (method: string) => (path: string): MethodDecorat
 const Get = createMappingDecorator('GET')
 const Post = createMappingDecorator('POST')
 
-function mapRoute(instance: Record<string, any>): Array<object> {
+function mapRoute(instance: Record<string, any>): Array<{
+  route: string | undefined;
+  method: string;
+  fn: Function;
+  methodName: string;
+}> {
   const prototype = Object.getPrototypeOf(instance)
 
   // 筛选出类的 methodName
