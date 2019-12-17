@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable import/no-dynamic-require */
-/* eslint-disable global-require */
 import Koa from 'koa'
 import Router from '@koa/router'
 import fs from 'fs'
@@ -47,8 +44,8 @@ function initRoute(app: Koa): void {
   app.use(router.routes())
 
   const routeFiles = getFiles(path.join(process.cwd(), 'src/routes'))
-  routeFiles.forEach((v) => {
-    const clazz = require(v)
+  routeFiles.forEach(async (v) => {
+    const clazz = await import(v)
     // eslint-disable-next-line no-console
     console.log(clazz)
   })
