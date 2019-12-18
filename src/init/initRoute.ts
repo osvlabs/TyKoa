@@ -30,24 +30,26 @@ function getFiles(dir: string): Array<string> {
 }
 
 function initRoute(app: Koa): void {
-  const routerOption = {
-    // TODO prefix /xxx check
-    prefix: Reflect.getMetadata(PATH_METADATA, TestController) || '',
-  }
-  const router = new Router(routerOption)
-
-  const infoArr = mapRoute(new TestController())
-  // TODO globby folder scan
-  infoArr.forEach((routeClass) => {
-    router[String(routeClass.method).toLowerCase()](routeClass.route, routeClass.fn)
-  })
-  app.use(router.routes())
-
   const routeFiles = getFiles(path.join(process.cwd(), 'src/routes'))
   routeFiles.forEach(async (v) => {
     const clazz = await import(v)
     // eslint-disable-next-line no-console
     console.log(clazz)
+    const Controller = clazz.default
+    if (!Controller || typeof Controller === 'object') return
+    const routerOption = {
+      // TODO prefix /xxx check
+      prefix: Reflect.getMetadata(PATH_METADATA, Controller) || '',
+    }
+    const router = new Router(routerOption)
+    const infoArr = mapRoute(new Controller())
+    console.log(infoArr)
+    // TODO globby folder scan
+    infoArr.forEach((routeClass) => {
+      router[String(routeClass.method).toLowerCase()](routeClass.route, routeClass.fn)
+    })
+    console.log(router.routes())
+    app.use(router.routes())
   })
 }
 
