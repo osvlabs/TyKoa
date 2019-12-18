@@ -5,7 +5,6 @@ import path from 'path'
 import {
   mapRoute, PATH_METADATA,
 } from '../decorators'
-import TestController from '../routes/test'
 
 function getFiles(dir: string): Array<string> {
   const result: Array<any> = []
@@ -35,6 +34,7 @@ function initRoute(app: Koa): void {
     const clazz = await import(v)
     // eslint-disable-next-line no-console
     console.log(clazz)
+    // TODO non default export detect
     const Controller = clazz.default
     if (!Controller || typeof Controller === 'object') return
     const routerOption = {
@@ -43,12 +43,13 @@ function initRoute(app: Koa): void {
     }
     const router = new Router(routerOption)
     const infoArr = mapRoute(new Controller())
-    console.log(infoArr)
+    // console.log(infoArr)
     // TODO globby folder scan
     infoArr.forEach((routeClass) => {
+      // TODO duplicated route path scan / cache , warning
       router[String(routeClass.method).toLowerCase()](routeClass.route, routeClass.fn)
     })
-    console.log(router.routes())
+    // console.log(router.routes())
     app.use(router.routes())
   })
 }
