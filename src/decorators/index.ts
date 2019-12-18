@@ -30,6 +30,10 @@ const createMappingDecorator = (method: string) => (path: string): MethodDecorat
 
 const Get = createMappingDecorator('GET')
 const Post = createMappingDecorator('POST')
+const Put = createMappingDecorator('PUT')
+const Delete = createMappingDecorator('DELETE')
+const Patch = createMappingDecorator('PATCH')
+const Head = createMappingDecorator('HEAD')
 
 function mapRoute(instance: Record<string, any>): Array<{
   route: string | undefined;
@@ -58,5 +62,7 @@ function mapRoute(instance: Record<string, any>): Array<{
 }
 
 export {
-  Controller, Get, Post, mapRoute, PATH_METADATA, METHOD_METADATA,
+  Controller, mapRoute,
+  PATH_METADATA, METHOD_METADATA,
+  Get, Post, Put, Delete, Patch, Head,
 }
