@@ -2,8 +2,10 @@
 A quickstart template for Node + TypeScript + Koa 2  
 
 # TODO  
+
+> 1. ~~Better routes, like scanning directories then require, using globby~~  
+> 1. duplicated route path warning.  
 > 1. IoC, using [injection](injection) or [tsyringe](https://github.com/microsoft/tsyringe) or [Inversify](https://github.com/inversify/InversifyJS)
-> 1. Better routes, like scanning directories then require, using globby  
 > 1. add service directory
 > 1. Better README
 > 1. Plugins support (like eggjs?..)
