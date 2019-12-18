@@ -3,7 +3,28 @@ A quickstart template for TypeScript + Koa 2
 
 # Feature  
 > 1. TypeScript + Koa 2
-> 1. Auto scan routes, configure routes using `@Controller('/path')` above class,  and `@Post('/subPath')` above each function ( other HTTP methods are also supported )
+> 1. Auto scan routes, configure routes using `@Controller('/path')` above class,  and `@Post('/subPath')` above each function ( other HTTP methods are also supported )  
+
+# System Requirements  
+> 1. Node.js latest v10.x or newer  
+> 1. PostgreSQL ( if you use MySQL, need to configure right driver for knex, and disable PostGraphile manually )  
+
+# Usage  
+
+1. first things first, input postgres configurations in `conf/local`  
+1. then:  
+```
+npm install  
+npm run n (dev mode)  
+open http://localhost:3000/test/2  
+
+( or, open http://localhost:3000/test/1 , you should ensure you have a table named `user_tb` first )  
+  
+-----------------------------------------------------------
+
+npm run build ( use tsc to build codes for production )
+npm start (run compiled codes for production)
+```
 
 # TODO  
 
