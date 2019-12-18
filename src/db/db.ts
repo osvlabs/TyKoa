@@ -1,6 +1,6 @@
 import knex from 'knex'
 import { dbConfig } from './dbConfig'
 
-const pg = knex(dbConfig)
+const db = knex(dbConfig)
 
-export { pg, pg as default }
+export { db, db as default }

@@ -1,3 +1,3 @@
 export * from './dbConfig'
 export * from './dbConnection'
-export * from './pg'
+export * from './db'
