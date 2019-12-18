@@ -1,7 +1,7 @@
 {
-  "name": "ts-koa-back",
+  "name": "tykoa",
   "version": "0.0.1",
-  "description": "ts-koa-backend-demo",
+  "description": "tykoa-backend-demo",
   "main": "index.js",
   "scripts": {
     "n": "nodemon",
