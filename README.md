@@ -3,7 +3,7 @@ A quickstart template for TypeScript + Koa 2
 
 # Feature  
 > 1. TypeScript + Koa 2
-> 1. Auto scan routes, configure routes using `@Controller(/path)` above class,  and `@Post(/subPath)` above each function ( other HTTP methods are also supported )
+> 1. Auto scan routes, configure routes using `@Controller('/path')` above class,  and `@Post('/subPath')` above each function ( other HTTP methods are also supported )
 
 # TODO  
 
