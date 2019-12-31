@@ -34,7 +34,7 @@ function initRoute(app: Koa): void {
   routeFiles.forEach(async (v) => {
     const clazz = await import(v)
     // eslint-disable-next-line no-console
-    console.log(clazz)
+    // console.log(clazz)
     // TODO non default export detect
     const Controller = clazz.default
     if (!Controller || typeof Controller === 'object') return
@@ -65,7 +65,7 @@ function initRoute(app: Koa): void {
       }
       // duplicated route check
       const fullRoutePath = `${routerOption.prefix}${routePath}`
-      console.log(fullRoutePath)
+      // console.log(fullRoutePath)
       if (routeArr.includes(fullRoutePath)) {
         throw new Error('duplicated routes detected')
       } else {
