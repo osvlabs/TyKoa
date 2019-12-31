@@ -23,7 +23,7 @@ const Controller = (path = ''): ClassDecorator => (target): void => {
 }
 
 // eslint-disable-next-line max-len
-const createMappingDecorator = (method: string) => (path: string): MethodDecorator => (target, key, descriptor): void => {
+const createMappingDecorator = (method: string) => (path?: string): MethodDecorator => (target, key, descriptor): void => {
   Reflect.defineMetadata(PATH_METADATA, path, descriptor.value!)
   Reflect.defineMetadata(METHOD_METADATA, method, descriptor.value!)
 }

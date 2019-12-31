@@ -30,6 +30,7 @@ function getFiles(dir: string): Array<string> {
 
 function initRoute(app: Koa): void {
   const routeFiles = getFiles(path.join(process.cwd(), 'src/routes'))
+  const routeArr: Array<string> = []
   routeFiles.forEach(async (v) => {
     const clazz = await import(v)
     // eslint-disable-next-line no-console
@@ -41,13 +42,37 @@ function initRoute(app: Koa): void {
       // TODO prefix /xxx check
       prefix: Reflect.getMetadata(PATH_METADATA, Controller) || '',
     }
+    // TODO refact prepend /
+    if (routerOption.prefix && String(routerOption.prefix)[0] !== '/') {
+      routerOption.prefix = `/${routerOption.prefix}`
+    }
+    // one Class create one Router
     const router = new Router(routerOption)
     const infoArr = mapRoute(new Controller())
     // console.log(infoArr)
     // TODO globby folder scan
-    infoArr.forEach((routeClass) => {
+    infoArr.forEach((routeMethod) => {
       // TODO duplicated route path scan / cache , warning
-      router[String(routeClass.method).toLowerCase()](routeClass.route, routeClass.fn)
+      // router.get() / router.post() / ...
+      let routePath = routeMethod.route
+      // TODO refact prepend /
+      if (routePath && String(routePath)[0] !== '/') {
+        routePath = `/${routePath}`
+      }
+      // if @Get('') or @Get() , no route info, use method name instead
+      if (!routePath) {
+        routePath = `/${routeMethod.fn.name || ''}`
+      }
+      // duplicated route check
+      const fullRoutePath = `${routerOption.prefix}${routePath}`
+      console.log(fullRoutePath)
+      if (routeArr.includes(fullRoutePath)) {
+        throw new Error('duplicated routes detected')
+      } else {
+        routeArr.push(fullRoutePath)
+      }
+      // mount routes
+      router[String(routeMethod.method).toLowerCase()](routePath, routeMethod.fn)
     })
     // console.log(router.routes())
     app.use(router.routes())

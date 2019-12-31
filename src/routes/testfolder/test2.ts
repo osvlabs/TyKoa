@@ -7,16 +7,16 @@ import {
   Controller, Get,
 } from '../../decorators'
 
-@Controller('/child')
+@Controller('child')
 export default class TestController {
-  @Get('/test/1')
+  @Get('test/1')
   async someGetMethod(ctx: Koa.BaseContext, next: Next): Promise<void> {
     const result = await db.table('user_tb').select('*')
     ctx.body = `Hello World Child 1!${JSON.stringify(result)}`
     await next()
   }
 
-  @Get('/test/2')
+  @Get()
   async someGetMethod2(ctx: ParameterizedContext<any>, next: Next): Promise<void> {
     ctx.body = `Hello World Child 2!${JSON.stringify(ctx.header)}`
     await next()
