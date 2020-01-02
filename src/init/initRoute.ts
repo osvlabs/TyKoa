@@ -16,7 +16,10 @@ function getFiles(dir: string): Array<string> {
     const direntArr = fs.readdirSync(innerDir, { withFileTypes: true })
     direntArr.forEach((dirent) => {
       if (dirent.isFile()) {
+        currentDir = path.join(innerDir, dirent.name, '../')
+        relativeDir = path.relative(__dirname, currentDir).replace(/\\/g, '/')
         result.push(`${relativeDir}/${dirent.name.replace('.ts', '')}`)
+        console.log(result)
       } else if (dirent.isDirectory()) {
         currentDir = path.join(innerDir, dirent.name)
         relativeDir = path.relative(__dirname, currentDir).replace(/\\/g, '/')
@@ -30,14 +33,22 @@ function getFiles(dir: string): Array<string> {
 
 function initRoute(app: Koa): void {
   const routeFiles = getFiles(path.join(process.cwd(), 'src/routes'))
+  // console.log(routeFiles)
   const routeArr: Array<string> = []
   routeFiles.forEach(async (v) => {
-    const clazz = await import(v)
+    let clazz
+    try {
+      clazz = await import(v)
+    } catch (error) {
+      throw new Error(error)
+      return
+    }
     // eslint-disable-next-line no-console
     // console.log(clazz)
     // TODO non default export detect
     const Controller = clazz.default
     if (!Controller || typeof Controller === 'object') return
+    if (!Reflect.hasMetadata('path', Controller)) return
     const routerOption = {
       // TODO prefix /xxx check
       prefix: Reflect.getMetadata(PATH_METADATA, Controller) || '',

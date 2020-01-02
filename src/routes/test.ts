@@ -4,15 +4,19 @@ import { Next, default as Koa } from 'koa'
 import { db } from '../db'
 
 import {
-  Controller, Get,
+  Controller, Get, Autowired,
 } from '../decorators'
+import TestService from './testService'
 
 @Controller()
 export default class TestController {
+  @Autowired()
+  public testService: TestService
+
   @Get('test1')
   async someGetMethod(ctx: Koa.Context, next: Next): Promise<void> {
     const result = await db.table('user_tb').select('*')
-    ctx.body = `Hello World 1!${JSON.stringify(result)}`
+    ctx.body = `Hello World 1!${JSON.stringify(result)} ${this.testService.testMethod('666')}`
     await next()
   }
 

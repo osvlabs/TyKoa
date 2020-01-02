@@ -61,8 +61,28 @@ function mapRoute(instance: Record<string, any>): Array<{
   })
 }
 
+// from https://github.com/soraping/any-source/issues/15
+const Autowired = (params: any = ''): Function => (target: any, propertyKey: string) => {
+  // 获取该属性的类型
+  const typeClass = Reflect.getMetadata('design:type', target, propertyKey)
+  const descriptor = Reflect.getOwnPropertyDescriptor(
+    target,
+    propertyKey,
+  ) || {
+    writable: true,
+    configurable: true,
+  }
+  // 实例化修饰类
+  descriptor.value = params ? new typeClass(params) : new typeClass()
+  Reflect.defineProperty(
+    (target && target.prototype) || target,
+    propertyKey,
+    descriptor,
+  )
+}
+
 export {
-  Controller, mapRoute,
+  Controller, Autowired, mapRoute,
   PATH_METADATA, METHOD_METADATA,
   Get, Post, Put, Delete, Patch, Head,
 }
