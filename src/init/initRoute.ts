@@ -19,7 +19,6 @@ function getFiles(dir: string): Array<string> {
         currentDir = path.join(innerDir, dirent.name, '../')
         relativeDir = path.relative(__dirname, currentDir).replace(/\\/g, '/')
         result.push(`${relativeDir}/${dirent.name.replace('.ts', '')}`)
-        console.log(result)
       } else if (dirent.isDirectory()) {
         currentDir = path.join(innerDir, dirent.name)
         relativeDir = path.relative(__dirname, currentDir).replace(/\\/g, '/')
@@ -59,7 +58,8 @@ function initRoute(app: Koa): void {
     }
     // one Class create one Router
     const router = new Router(routerOption)
-    const infoArr = mapRoute(new Controller())
+    const controllerInstance = new Controller()
+    const infoArr = mapRoute(controllerInstance)
     // console.log(infoArr)
     // TODO globby folder scan
     infoArr.forEach((routeMethod) => {
@@ -83,7 +83,11 @@ function initRoute(app: Koa): void {
         routeArr.push(fullRoutePath)
       }
       // mount routes
-      router[String(routeMethod.method).toLowerCase()](routePath, routeMethod.fn)
+      router[String(routeMethod.method).toLowerCase()](
+        routePath,
+        // if no .bind , `this` inside controller (route class) methods is `undefined`
+        routeMethod.fn.bind(controllerInstance),
+      )
     })
     // console.log(router.routes())
     app.use(router.routes())

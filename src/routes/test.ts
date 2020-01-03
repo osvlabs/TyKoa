@@ -16,13 +16,12 @@ export default class TestController {
   @Get('test1')
   async someGetMethod(ctx: Koa.Context, next: Next): Promise<void> {
     const result = await db.table('user_tb').select('*')
-    ctx.body = `Hello World 1!${JSON.stringify(result)} ${this.testService.testMethod('666')}`
+    ctx.body = `Hello World 1!${JSON.stringify(result)} ${this.testService.testMethod(666)}`
     await next()
   }
 
   @Get('')
-  async someGetMethod2(ctx: Koa.Context, next: Next): Promise<void> {
+  someGetMethod2(ctx: Koa.Context): void{
     ctx.body = `Hello World 2!${JSON.stringify(ctx.header)}`
-    await next()
   }
 }
