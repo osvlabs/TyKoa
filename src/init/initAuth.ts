@@ -17,6 +17,7 @@ function initAuth(app: Koa): Middleware {
       const credentials = parts[1]
 
       if (/^Bearer$/i.test(scheme)) {
+        // TODO check credentials using jwt
         ctx.state.credentials = credentials
         return next()
       }
