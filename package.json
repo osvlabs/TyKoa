@@ -36,6 +36,7 @@
     "@graphile-contrib/pg-simplify-inflector": "^5.0.0-beta.1",
     "@koa/router": "^8.0.2",
     "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.3",
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
