@@ -18,6 +18,7 @@ async function init(app: Koa): Promise<void> {
     console.log('data base connected')
   }
   await waitDb()
+  // initAuth() returns an middleware
   app.use(initAuth(app))
   initRoute(app)
 }
