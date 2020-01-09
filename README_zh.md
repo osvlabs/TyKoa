@@ -4,7 +4,7 @@
 # 设计原则  
 借助TypeScript的装饰器(decorators), 可以实现类似Java语言的 注解(annotation), 借此来实现类似Spring的自动扫包 / 依赖注入。  
 
-同时，egg / midway等框架虽功能完善，但对初学者研究核心实现不太友好；同时，依赖过多第三方库，导致风险不可控。  
+同时，egg / midway等框架虽功能完善，但对初学者研究核心实现不太友好；依赖过多第三方库，导致风险不可控。  
 故，自造此玩具模版。将来会把核心功能抽出，单独成为一个npm包。  
 
 > **持续完善中。欢迎贡献代码，一起玩耍。  
@@ -24,14 +24,15 @@
 > 1. PostgreSQL ( 如前所述，基于knex，稍作修改即可支持其它数据库。但GraphQL / PostGraphile依赖PostgreSQL，如使用其它数据库，GraphQL相关初始化代码也请一并移除 )  
 
 # 使用方法  
+postgres数据库中需要有一张名为`user_tb`的表，结构和数据不限  
+conf/ 中配置好数据库  
 ```
-npm install
+npm install  
 npm run n
 ```
 默认启动在 `http://localhost:3000/`  
 graphiql挂载在 `http://localhost:3000/gql/graphiql`  
 graphql挂载在 `http://localhost:3000/gql/graphql`  
-postgres数据库中需要有一张名为`user_tb`的表，结构和数据不限
 
 其它事宜，参见以上readme，并查看package.json和项目代码。  
 
