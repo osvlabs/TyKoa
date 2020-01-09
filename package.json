@@ -1,6 +1,6 @@
 {
   "name": "tykoa",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "tykoa-backend-demo",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "build": "tsc",
     "start": "node ./build/app.js",
     "postinstall": "( git init || true) && git update-index --skip-worktree \"./conf/local\"",
-    "lint": "eslint ./src/**/*.{ts,tsx}",
+    "lint": "eslint ./src/**/*.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -36,6 +36,7 @@
     "@graphile-contrib/pg-simplify-inflector": "^5.0.0-beta.1",
     "@koa/router": "^8.0.2",
     "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.3",
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
