@@ -17,6 +17,7 @@ function initAuth(app: Koa): Middleware {
       ctx.request.path === '/login'
       // warning: gql path is open
       || String(ctx.request.path).match(/\/gql.*/)
+      || getConfig('SECRET') === ''
     ) {
       return next()
     }

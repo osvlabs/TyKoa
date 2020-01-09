@@ -26,6 +26,7 @@
 # 使用方法  
 postgres数据库中需要有一张名为`user_tb`的表，结构和数据不限  
 conf/ 中配置好数据库  
+jsonwebtoken默认关闭，如果填入`SECRET`配置项，才会开启header验证。请完善登录逻辑后再开启。  
 ```
 npm install  
 npm run n
