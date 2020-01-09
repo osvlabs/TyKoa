@@ -13,7 +13,11 @@ function initAuth(app: Koa): Middleware {
     app.context.jwt = jwt
   }
   const middleware = function auth(ctx: Koa.Context, next: Next): Promise<void> | void {
-    if (ctx.request.path === '/login') {
+    if (
+      ctx.request.path === '/login'
+      // warning: gql path is open
+      || String(ctx.request.path).match(/\/gql.*/)
+    ) {
       return next()
     }
     if (!ctx.header || !ctx.header.authorization) {

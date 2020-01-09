@@ -29,10 +29,12 @@ npm start (run compiled codes for production)
 # TODO  
 
 > 1. ~~Better routes, like scanning directories then require, using globby~~  
-> 1. duplicated route path warning.  
-> 1. IoC, using [injection](injection) or [tsyringe](https://github.com/microsoft/tsyringe) or [Inversify](https://github.com/inversify/InversifyJS)
-> 1. add service directory
+> 1. ~~duplicated route path warning.~~  
+> 1. IoC container, using [injection](injection) or [tsyringe](https://github.com/microsoft/tsyringe) or [Inversify](https://github.com/inversify/InversifyJS)
+> 1. ~~add service directory~~
+> 1. ~~jsonwebtoken~~
 > 1. Better README
+> 1. Better logger
 > 1. Plugins support (like eggjs?..)
 > 1. CLI support to quickly generate structure
 > 1. RPC
