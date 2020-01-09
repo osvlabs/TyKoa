@@ -18,7 +18,7 @@
 
 # 系统要求  
 > 1. Node.js v10.x 版本或更新  
-> 1. PostgreSQL ( 如前所述，基于knex，稍作修改即可支持其它数据库。但GraphQL / PostGraphile依赖PostgreSQL，GraphQL相关初始化代码也请一并移除 )  
+> 1. PostgreSQL ( 如前所述，基于knex，稍作修改即可支持其它数据库。但GraphQL / PostGraphile依赖PostgreSQL，如使用其它数据库，GraphQL相关初始化代码也请一并移除 )  
 
 # 使用方法  
 ```
@@ -27,7 +27,7 @@ npm run n
 ```
 默认启动在 `http://localhost:3000/`  
 graphiql挂载在 `http://localhost:3000/gql/graphiql`  
-graphiql挂载在 `http://localhost:3000/gql/graphql`  
+graphql挂载在 `http://localhost:3000/gql/graphql`  
 postgres数据库中需要有一张名为`user_tb`的表，结构和数据不限
 
 其它事宜，参见以上readme，并查看package.json和项目代码。  
