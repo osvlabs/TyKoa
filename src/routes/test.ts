@@ -3,8 +3,10 @@
 import { Next, default as Koa } from 'koa'
 import { TestService } from '../services'
 import {
-  Controller, Get, Autowired,
+  Controller, Get, Autowired, Post,
 } from '../decorators'
+import { getConfig } from '../util'
+
 
 @Controller()
 export default class TestController {
@@ -26,5 +28,24 @@ export default class TestController {
   @Get('db')
   async someGetMethod3(ctx: Koa.Context): Promise<void> {
     ctx.body = await this.testService.dbService()
+  }
+
+  @Post()
+  login(ctx: Koa.Context, next: Next): Promise<void> {
+    const { username, password } = ctx.request.body
+    if (username === '1' && password === '1') {
+      const token = ctx.jwt.sign(
+        { username },
+        getConfig('SECRET'),
+        {
+          expiresIn: '24h', // expires in 24 hours
+        },
+      )
+      ctx.body = { token }
+      return next()
+    }
+    ctx.response.status = 401
+    ctx.body = 'login failed'
+    return next()
   }
 }

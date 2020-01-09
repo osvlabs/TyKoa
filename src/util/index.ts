@@ -1,5 +1,5 @@
-function getConfig(key: string): string | undefined {
-  return process.env[key.toUpperCase()]
+function getConfig(key: string): string {
+  return process.env[key.toUpperCase()] || ''
 }
 
 export { getConfig, getConfig as default }

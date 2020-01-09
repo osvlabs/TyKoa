@@ -25,5 +25,6 @@ module.exports = {
         "@typescript-eslint/no-explicit-any": 0,
         "@typescript-eslint/semi": ["error", "never"],
         "class-methods-use-this": 0,
+        "consistent-return": 0,
     }
 };
