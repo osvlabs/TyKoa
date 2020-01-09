@@ -1,5 +1,5 @@
 #  TyKoa  
-目前是一个玩具型 TypeScript + Koa 2 快速开发模版  
+目前是一个玩具型 TypeScript + Koa 2 后端API快速开发模版  
 
 # 设计原则  
 借助TypeScript的装饰器(decorators), 可以实现类似Java语言的 注解(annotation), 借此来实现类似Spring的自动扫包 / 依赖注入。  
