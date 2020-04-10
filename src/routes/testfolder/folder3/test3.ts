@@ -12,10 +12,9 @@ export default class TestController {
   // sub folder name / file name / class name counts nothing in route path
   // only method's name will be part of route if no route sepecified
   @Get('test/1')
-  async someGetMethod(ctx: Koa.Context, next: Next): Promise<void> {
+  async someGetMethod(ctx: Koa.Context): Promise<void> {
     const result = await db.table('user_tb').select('*')
     ctx.body = `Hello World Child 1!${JSON.stringify(result)}`
-    await next()
   }
 
   @Get()
