@@ -1,13 +1,11 @@
 
 import Koa from 'koa'
 import { db } from '../db/index'
-import { initPostgraphile } from './initKoa'
 import { initRoute } from './initRoute'
 import { initAuth } from './initAuth'
 
 
 async function init(app: Koa): Promise<void> {
-  initPostgraphile(app)
   const waitDb = async (): Promise<void> => {
     await db.select(db.raw('1'))
     if (app.context && !app.context.db) {

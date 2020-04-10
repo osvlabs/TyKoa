@@ -1,14 +1,14 @@
 import knex from 'knex'
 import { getConfig } from '../util'
 
-const pgPrefix = 'DB_PG_'
+const mysqlPrefix = 'DB_MYSQL_'
 
 const dbConnection: knex.PgConnectionConfig = {
-  user: getConfig(`${pgPrefix}user`),
-  host: getConfig(`${pgPrefix}host`),
-  database: getConfig(`${pgPrefix}database`),
-  password: getConfig(`${pgPrefix}password`),
-  port: Number(getConfig(`${pgPrefix}port`)),
+  user: getConfig(`${mysqlPrefix}user`),
+  host: getConfig(`${mysqlPrefix}host`),
+  database: getConfig(`${mysqlPrefix}database`),
+  password: getConfig(`${mysqlPrefix}password`),
+  port: Number(getConfig(`${mysqlPrefix}port`)),
 }
 
 export { dbConnection, dbConnection as default }

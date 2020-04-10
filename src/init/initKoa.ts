@@ -1,7 +1,5 @@
 import bodyParser from 'koa-bodyparser'
 import Koa from 'koa'
-import postgraphile from 'postgraphile'
-import { dbConnection, postgraphileOptions } from '../db/index'
 
 function initKoa(): Koa {
   const app = new Koa()
@@ -28,13 +26,4 @@ function initKoa(): Koa {
   return app
 }
 
-
-function initPostgraphile(app: Koa): void {
-  app.use(postgraphile(
-    dbConnection,
-    'public',
-    postgraphileOptions,
-  ))
-}
-
-export { initKoa, initPostgraphile }
+export { initKoa, initKoa as default }

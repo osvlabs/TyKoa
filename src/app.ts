@@ -10,7 +10,7 @@ const main = async function (): Promise<void> {
 
   await init(app)
   // eslint-disable-next-line no-console
-  console.log(process.env.DB_PG_PORT)
+  console.log(process.env.DB_MYSQL_PORT)
   app.listen(3000)
 }
 
