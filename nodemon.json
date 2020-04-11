@@ -8,6 +8,8 @@
   "watch": [
     "src"
   ],
-  "exec": "npx ts-node ./src/app.ts",
-  "ext": "ts"
+  "execMap": {
+    "ts": "node --require ts-node/register"
+  },
+  "ext": "js,ts"
 }

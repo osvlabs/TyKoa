@@ -12,6 +12,7 @@ function getFiles(dir: string): Array<string> {
   let currentDir = ''
   // relative dir compared with current initRoute.ts
   let relativeDir = '../routes'
+
   function deepFind(innerDir: string): Array<string> {
     const direntArr = fs.readdirSync(innerDir, { withFileTypes: true })
     direntArr.forEach((dirent) => {

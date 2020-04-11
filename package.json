@@ -4,7 +4,8 @@
   "description": "tykoa-backend-demo",
   "main": "index.js",
   "scripts": {
-    "n": "nodemon",
+    "n": "nodemon ./src/app.ts",
+    "debug": "nodemon --inspect ./src/app.ts",
     "dev": "concurrently nodemon \"open-cli http://localhost:3000/child/test/1\" ",
     "build": "tsc",
     "start": "node ./build/app.js",
